@@ -1,0 +1,14 @@
+const sections = [
+	['Using Mazdoor Sytu', 'You may use the platform to discover work, offer services, make bookings and communicate about a genuine job. Please keep your account information accurate and up to date.'],
+	['Profiles and verification', 'Workers are responsible for the skills, experience, documents and availability shown on their profile. Customers and businesses should review profile information before booking. Verification helps build trust, but it does not replace good judgment.'],
+	['Bookings and payments', 'A booking is confirmed only when the details and price are accepted by both sides. Keep payment and job details inside the platform where possible. Cancellation, refund and fee terms may vary by service and will be shown before confirmation.'],
+	['Respect and safety', 'Everyone using Mazdoor Sytu must communicate respectfully, follow applicable laws and maintain a safe workplace. Do not discriminate, harass, misrepresent a service or request unsafe work. Report concerns to our support team.'],
+	['Reviews and communication', 'Reviews should be honest, relevant and based on a real interaction. Do not use the platform to send spam, false information or content that violates another person’s privacy or rights.'],
+	['Our role', 'Mazdoor Sytu helps people connect and manage work. We do not employ workers directly and are not responsible for the independent performance of a service. We will work to keep the platform reliable, transparent and responsive.'],
+]
+
+function Terms() {
+	return <section className="legal-page"><header className="legal-hero"><div><p className="eyebrow">The small print, made clear</p><h1>Terms of <em>service.</em></h1><p>These terms explain how Mazdoor Sytu works and what we expect from everyone who uses it.</p></div><div className="legal-meta"><span>LAST UPDATED</span><strong>23 September 2026</strong><small>Version 1.0</small></div></header><div className="legal-layout"><aside className="legal-summary"><span className="panel-kicker">AT A GLANCE</span><h2>Good work starts with good conduct.</h2><p>Use the platform honestly, treat people with respect and keep job details clear.</p><a href="mailto:legal@mazdoorSytu.in">Questions? Contact us ↗</a></aside><div className="legal-content"><p className="legal-intro">By creating an account or using Mazdoor Sytu, you agree to these terms. They apply to workers, households, businesses and anyone who visits or uses our services.</p>{sections.map(([title, text], index) => <article className="legal-section" key={title}><span>{String(index + 1).padStart(2, '0')}</span><div><h2>{title}</h2><p>{text}</p></div></article>)}<div className="legal-contact"><strong>Need help understanding something?</strong><p>Our support team can explain a booking, account or safety question.</p><a href="/support">Visit support ↗</a></div></div></div></section>
+}
+
+export default Terms
