@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Service",
+  "description": "Standard trade catalog item with rate card range and ₹99 booking advance definition",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Service slug identifier (e.g. srv-elec, srv-plumb)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the trade (e.g. Electrician, Plumber, Carpenter)"
+    },
+    "category": {
+      "type": "string",
+      "description": "Broad category grouping (e.g. Electrical, Plumbing, Woodwork, Finishing)"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Emoji or icon identifier"
+    },
+    "minLabourRatePaise": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Platform minimum floor labour rate in paise (e.g. 20000 paise = ₹200)"
+    },
+    "maxLabourRatePaise": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Platform standard ceiling labour rate in paise. Quotes above this require mandatory explicit customer approval."
+    },
+    "defaultRatePaise": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Standard baseline starting charge in paise (e.g. 25000 paise = ₹250)"
+    },
+    "advanceFeePaise": {
+      "type": "number",
+      "default": 9900,
+      "description": "Standard upfront booking advance fee (always 9900 paise = ₹99, adjusted in final bill)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Common scope of issues handled"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": ["id", "name", "defaultRatePaise", "advanceFeePaise"]
+}

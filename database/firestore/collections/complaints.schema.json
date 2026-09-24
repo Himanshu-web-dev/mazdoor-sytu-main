@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Complaint",
+  "description": "Grievance, service defect report, or payment dispute escalated to platform administration",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique complaint ticket ID (e.g. CMP-701)"
+    },
+    "bookingId": {
+      "type": "string",
+      "description": "Optional booking ID context"
+    },
+    "raisedById": {
+      "type": "string",
+      "description": "Foreign key to users.id of person filing dispute"
+    },
+    "raisedByName": {
+      "type": "string"
+    },
+    "againstId": {
+      "type": "string",
+      "description": "User ID of person reported"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Dispute summary headline"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed explanation of grievance"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Service Quality", "Attendance & Reliability", "Scope & Payment Dispute", "Platform Policy Violation"],
+      "default": "Service Quality"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High", "Critical"],
+      "default": "Medium"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "under_review", "resolved", "dismissed"],
+      "default": "open"
+    },
+    "resolutionNote": {
+      "type": "string"
+    },
+    "assignedAdmin": {
+      "type": "string",
+      "default": "Super Admin"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolvedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "raisedById", "subject", "description", "status", "createdAt"]
+}

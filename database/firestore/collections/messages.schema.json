@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Message",
+  "description": "Direct chat message between Customer, Worker, or Business",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique message ID (e.g. MSG-8129)"
+    },
+    "conversationId": {
+      "type": "string",
+      "description": "Composite conversation thread identifier (e.g. sorted user IDs or bookingId context)"
+    },
+    "senderId": {
+      "type": "string",
+      "description": "Foreign key to users.id of sender"
+    },
+    "receiverId": {
+      "type": "string",
+      "description": "Foreign key to users.id of recipient"
+    },
+    "bookingId": {
+      "type": "string",
+      "description": "Optional booking context ID"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Message text content"
+    },
+    "read": {
+      "type": "boolean",
+      "default": false
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "conversationId", "senderId", "receiverId", "text", "timestamp"]
+}

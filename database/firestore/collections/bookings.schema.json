@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Booking",
+  "description": "Customer ↔ Worker actual doorstep service booking record tracking the standardized 9-stage lifecycle, ₹99 advance (9900 paise), OTP, and final adjusted balance",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique booking identifier (e.g. BK-902)"
+    },
+    "customerId": {
+      "type": "string",
+      "description": "Foreign key to users.id of the customer"
+    },
+    "customerName": { "type": "string" },
+    "customerPhone": { "type": "string" },
+    "workerId": {
+      "type": "string",
+      "description": "Foreign key to workers.id (assigned artisan)"
+    },
+    "workerName": { "type": "string" },
+    "workerPhone": { "type": "string" },
+    "service": {
+      "type": "string",
+      "description": "Requested trade skill / job title"
+    },
+    "location": {
+      "type": "string",
+      "description": "Customer doorstep address"
+    },
+    "landmark": { "type": "string" },
+    "bookingMode": {
+      "type": "string",
+      "enum": ["realtime", "scheduled"],
+      "default": "realtime"
+    },
+    "scheduledDate": { "type": "string" },
+    "scheduledTime": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "confirmed",
+        "on_the_way",
+        "arrived",
+        "estimate_pending",
+        "work_started",
+        "completed",
+        "cancelled",
+        "rejected"
+      ],
+      "default": "pending",
+      "description": "Standardized 9-stage booking fulfillment status"
+    },
+    "otp": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$",
+      "description": "4-digit completion code shared with worker only after satisfaction"
+    },
+    "advancePaidPaise": {
+      "type": "number",
+      "default": 9900,
+      "description": "Upfront advance booking fee in paise (9900 paise = ₹99, adjusted against final bill)"
+    },
+    "advanceStatus": {
+      "type": "string",
+      "enum": ["paid", "refunded", "adjusted"],
+      "default": "paid"
+    },
+    "currentEstimateId": {
+      "type": "string",
+      "description": "Foreign key to estimates.id"
+    },
+    "pricing": {
+      "type": "object",
+      "properties": {
+        "advancePaidPaise": { "type": "number", "default": 9900 },
+        "labourChargePaise": { "type": "number", "default": 0 },
+        "labourAdjustedPaise": { "type": "number", "default": 0 },
+        "materialCostPaise": { "type": "number", "default": 0 },
+        "platformCommissionPaise": { "type": "number", "default": 0 },
+        "totalPayablePaise": { "type": "number", "default": 0 }
+      },
+      "description": "Exact financial calculations in integer paise"
+    },
+    "paymentStatus": {
+      "type": "string",
+      "enum": ["advance_paid", "pending", "paid", "refunded"],
+      "default": "advance_paid"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": ["UPI", "Wallet", "Card", "NetBanking", "Cash"]
+    },
+    "timeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "stage": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "note": { "type": "string" }
+        },
+        "required": ["stage", "timestamp"]
+      }
+    },
+    "cancellationReason": { "type": "string" },
+    "refundDetails": {
+      "type": "object",
+      "properties": {
+        "stage": { "type": "number" },
+        "refundPercentage": { "type": "number" },
+        "refundAmountPaise": { "type": "number" },
+        "retainedAmountPaise": { "type": "number" }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "customerId", "service", "location", "status", "advancePaidPaise", "createdAt"]
+}

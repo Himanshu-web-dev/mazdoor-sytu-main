@@ -1,0 +1,29 @@
+{
+  "name": "mazdoor-sytu-backend",
+  "version": "1.0.0",
+  "description": "Production REST API backend for Mazdoor Sytu Skilled Workforce & Hyperlocal Service Platform",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node test_flows.js"
+  },
+  "keywords": [
+    "mazdoor-sytu",
+    "hyperlocal",
+    "blue-collar",
+    "workforce",
+    "express",
+    "firebase"
+  ],
+  "author": "Mazdoorsytu Technologies Pvt. Ltd.",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

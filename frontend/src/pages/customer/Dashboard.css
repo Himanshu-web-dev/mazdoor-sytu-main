@@ -1,0 +1,714 @@
+﻿/* ==========================================================================
+   Mazdoor Sytu — Customer Portal Dashboard
+   Premium, editorial, high-conversion design
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Welcome / Hero Banner
+   -------------------------------------------------------------------------- */
+.customer-welcome-banner {
+  background: #0f1a16;
+  border-radius: 20px;
+  padding: 32px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+.customer-welcome-banner::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(233,116,71,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.customer-welcome-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; left: 60px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212,230,78,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.banner-date-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #e97447;
+  margin-bottom: 10px;
+}
+
+.banner-date-badge .live-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 3px rgba(74,222,128,0.2);
+  animation: livePulse 2s infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(74,222,128,0.2); }
+  50%       { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+}
+
+.customer-welcome-banner h2 {
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 8px;
+  letter-spacing: -0.03em;
+}
+
+.customer-welcome-banner p {
+  color: rgba(255,255,255,0.55);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 540px;
+}
+
+.btn-banner-action {
+  background: #e97447;
+  color: #ffffff;
+  border: 0;
+  padding: 13px 26px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.22s ease;
+  box-shadow: 0 6px 20px rgba(233,116,71,0.35);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.01em;
+}
+
+.btn-banner-action:hover {
+  background: #d4603a;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(233,116,71,0.45);
+}
+
+/* --------------------------------------------------------------------------
+   2. Stats Matrix
+   -------------------------------------------------------------------------- */
+.customer-stats-matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.customer-stat-box {
+  background: #ffffff;
+  border: 1px solid #ebe9e1;
+  border-top: 3px solid transparent;
+  border-radius: 16px;
+  padding: 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.customer-stat-box:nth-child(1) { border-top-color: #e97447; }
+.customer-stat-box:nth-child(2) { border-top-color: #2a7c3d; }
+.customer-stat-box:nth-child(3) { border-top-color: #8b5cf6; }
+.customer-stat-box:nth-child(4) { border-top-color: #3880ff; }
+
+.customer-stat-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.07);
+  border-color: #d5d2ca;
+}
+
+.stat-box-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.stat-box-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #9e9b93;
+}
+
+.stat-box-icon {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.icon-orange { background: rgba(233,116,71,0.1); color: #e97447; }
+.icon-green  { background: rgba(42,124,61,0.1);  color: #2a7c3d; }
+.icon-purple { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+.icon-blue   { background: rgba(56,128,255,0.1); color: #3880ff; }
+
+.stat-box-number {
+  font-size: 32px;
+  font-weight: 800;
+  color: #0f1a16;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  margin-bottom: 4px;
+}
+
+.stat-box-note {
+  font-size: 12px;
+  font-weight: 600;
+  color: #9e9b93;
+}
+
+.note-positive { color: #2a7c3d; }
+
+/* --------------------------------------------------------------------------
+   3. Middle Layout: Bookings + Quick Actions
+   -------------------------------------------------------------------------- */
+.customer-middle-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.customer-card-panel {
+  background: #ffffff;
+  border: 1px solid #ebe9e1;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+}
+
+.panel-head-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.panel-kicker {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #e97447;
+  margin-bottom: 3px;
+}
+
+.panel-head-row h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: #0f1a16;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.panel-view-link {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #9e9b93;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+  padding: 0;
+}
+
+.panel-view-link:hover { color: #e97447; }
+
+/* --------------------------------------------------------------------------
+   4. Booking Rows
+   -------------------------------------------------------------------------- */
+.customer-booking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.customer-booking-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 15px;
+  border: 1px solid #ebe9e1;
+  border-radius: 13px;
+  background: #fafaf8;
+  transition: all 0.18s ease;
+}
+
+.customer-booking-row:hover {
+  background: #ffffff;
+  border-color: #e97447;
+  box-shadow: 0 4px 14px rgba(233,116,71,0.1);
+  transform: translateX(3px);
+}
+
+.booking-service-badge {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: #0f1a16;
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+.booking-info-block {
+  flex: 1;
+  min-width: 0;
+}
+
+.booking-info-block strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f1a16;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.booking-info-block p {
+  margin: 0;
+  font-size: 12.5px;
+  color: #9e9b93;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.booking-time-tag {
+  display: block;
+  font-size: 11.5px;
+  color: #b5b3ae;
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.booking-status-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.booking-eta-text {
+  font-size: 11px;
+  color: #b5b3ae;
+  font-weight: 500;
+}
+
+/* Status Pills */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.status-pill.real-time, .status-pill.active {
+  background: rgba(74,222,128,0.12);
+  color: #15803d;
+}
+
+.status-pill.confirmed {
+  background: rgba(233,116,71,0.12);
+  color: #e97447;
+}
+
+.status-pill.scheduled {
+  background: rgba(56,128,255,0.1);
+  color: #3880ff;
+}
+
+.pulse-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #15803d;
+  animation: livePulse 1.8s infinite;
+}
+
+/* --------------------------------------------------------------------------
+   5. Quick Actions Grid
+   -------------------------------------------------------------------------- */
+.customer-actions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.customer-action-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 15px;
+  border: 1px solid #ebe9e1;
+  border-radius: 13px;
+  background: #fafaf8;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: all 0.18s cubic-bezier(0.16,1,0.3,1);
+  width: 100%;
+}
+
+.customer-action-card:hover {
+  background: #0f1a16;
+  border-color: #0f1a16;
+  transform: translateX(4px);
+  box-shadow: 0 6px 18px rgba(15,26,22,0.15);
+}
+
+.action-card-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: rgba(233,116,71,0.1);
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: background 0.18s ease;
+}
+
+.customer-action-card:hover .action-card-icon {
+  background: rgba(255,255,255,0.1);
+}
+
+.customer-action-card div strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f1a16;
+  margin-bottom: 2px;
+  transition: color 0.18s ease;
+}
+
+.customer-action-card div p {
+  margin: 0;
+  font-size: 12px;
+  color: #9e9b93;
+  transition: color 0.18s ease;
+}
+
+.customer-action-card:hover div strong,
+.customer-action-card:hover div p {
+  color: rgba(255,255,255,0.85);
+}
+
+/* --------------------------------------------------------------------------
+   6. Bottom Layout: Workers + Checklist
+   -------------------------------------------------------------------------- */
+.customer-bottom-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 20px;
+}
+
+/* Worker Cards */
+.customer-workers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.worker-compact-card {
+  background: #fafaf8;
+  border: 1px solid #ebe9e1;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.worker-compact-card:hover {
+  background: #ffffff;
+  border-color: #e97447;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.worker-compact-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.worker-avatar-small {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0f1a16 0%, #1a2e24 100%);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  font-size: 11.5px;
+  font-weight: 800;
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+}
+
+.worker-name-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.worker-name-group strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #0f1a16;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.worker-trade-tag {
+  display: block;
+  font-size: 11px;
+  color: #9e9b93;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.badge-available {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(42,124,61,0.12);
+  color: #2a7c3d;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.worker-compact-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: #9e9b93;
+  padding: 8px 0;
+  border-top: 1px solid #ebe9e1;
+  border-bottom: 1px solid #ebe9e1;
+}
+
+.worker-pricing-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.worker-rate-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f1a16;
+}
+
+.btn-book-small {
+  background: #0f1a16;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 800;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.btn-book-small:hover {
+  background: #e97447;
+  box-shadow: 0 4px 12px rgba(233,116,71,0.3);
+}
+
+/* --------------------------------------------------------------------------
+   7. Safety Checklist
+   -------------------------------------------------------------------------- */
+.checklist-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #ebe9e1;
+  border-radius: 11px;
+  background: #fafaf8;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.checklist-item:hover {
+  background: #ffffff;
+  border-color: #d5d2ca;
+}
+
+.checklist-item input[type="checkbox"] { display: none; }
+
+.custom-checkbox-marker {
+  width: 18px; height: 18px;
+  border-radius: 6px;
+  border: 2px solid #d5d2ca;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.18s ease;
+  background: #ffffff;
+}
+
+.checklist-item.item-checked .custom-checkbox-marker {
+  background: #e97447;
+  border-color: #e97447;
+}
+
+.checklist-item.item-checked .custom-checkbox-marker::after {
+  content: '✓';
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.checklist-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #3d3c3a;
+  line-height: 1.45;
+  transition: color 0.15s ease;
+}
+
+.checklist-item.item-checked .checklist-text {
+  text-decoration: line-through;
+  color: #b5b3ae;
+}
+
+.checklist-footer-note {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(42,124,61,0.06);
+  border: 1px solid rgba(42,124,61,0.15);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #2a7c3d;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   8. Shared Utilities
+   -------------------------------------------------------------------------- */
+.btn-primary-action {
+  background: #0f1a16;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 9px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-primary-action:hover {
+  background: #e97447;
+  box-shadow: 0 4px 14px rgba(233,116,71,0.3);
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1100px) {
+  .customer-stats-matrix {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .customer-middle-layout,
+  .customer-bottom-layout {
+    grid-template-columns: 1fr;
+  }
+  .customer-workers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .customer-welcome-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 20px;
+    gap: 18px;
+  }
+  .btn-banner-action {
+    width: 100%;
+    justify-content: center;
+  }
+  .customer-stats-matrix {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .stat-box-number {
+    font-size: 26px;
+  }
+  .customer-workers-grid {
+    grid-template-columns: 1fr;
+  }
+  .customer-booking-row {
+    flex-wrap: wrap;
+  }
+}

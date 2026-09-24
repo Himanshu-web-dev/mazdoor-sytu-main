@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "User",
+  "description": "Primary user account record for Customers, Workers, Businesses, and Admins in Mazdoor Sytu. Note: Financial balance is maintained exclusively in the wallets/{userId} collection.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique user ID (e.g. USR-101, WRK-201, BIZ-301)"
+    },
+    "phone": {
+      "type": "string",
+      "pattern": "^\\+?[1-9]\\d{9,12}$",
+      "description": "Primary 10-digit Indian mobile number with optional country code"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Full name of the user or company representative"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "role": {
+      "type": "string",
+      "enum": ["customer", "worker", "business", "admin"],
+      "description": "Role determining permissions and access tier"
+    },
+    "city": {
+      "type": "string",
+      "description": "Operating city/locality (e.g. Meerut, UP)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "suspended", "pending"],
+      "default": "active",
+      "description": "Account status"
+    },
+    "avatarUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Profile picture URL stored in Firebase Storage"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "phone", "name", "role", "status", "createdAt"]
+}

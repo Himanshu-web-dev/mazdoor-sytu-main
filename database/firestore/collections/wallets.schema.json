@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Wallet",
+  "description": "User digital wallet single source of truth at wallets/{userId}. Transaction history stored in subcollection wallets/{userId}/transactions/{txId}",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Wallet ID matching users.id (e.g. USR-101 or WRK-201)"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Foreign key to users.id"
+    },
+    "userRole": {
+      "type": "string",
+      "enum": ["customer", "worker", "business"],
+      "default": "worker"
+    },
+    "balancePaise": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Available withdrawable/usable balance in paise (1 INR = 100 paise)"
+    },
+    "balance": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0,
+      "description": "Available balance in INR for convenience"
+    },
+    "pendingWithdrawalsPaise": {
+      "type": "integer",
+      "default": 0,
+      "description": "Amount locked in pending withdrawal requests in paise"
+    },
+    "lastPayoutAmountPaise": {
+      "type": "integer",
+      "default": 0
+    },
+    "lastPayoutDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "userId", "balancePaise"]
+}

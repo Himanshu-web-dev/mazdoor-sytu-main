@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Document",
+  "description": "KYC identification, ITI trade diplomas, police clearance, and GST registration certificates for workers and businesses",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique KYC record ID (e.g. DOC-501)"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Foreign key to users.id"
+    },
+    "userRole": {
+      "type": "string",
+      "enum": ["worker", "business", "customer"],
+      "default": "worker",
+      "description": "Role of the user submitting the document"
+    },
+    "userName": {
+      "type": "string"
+    },
+    "docType": {
+      "type": "string",
+      "enum": ["Aadhaar Card", "PAN Card", "Trade Certificate / ITI", "GST Certificate", "Police Verification", "Driving License"],
+      "default": "Aadhaar Card"
+    },
+    "documentNumber": {
+      "type": "string",
+      "description": "Masked or hashed identity document number (e.g. •••• •••• 8492)"
+    },
+    "certificateName": {
+      "type": "string",
+      "description": "Title of vocational or trade certification if applicable"
+    },
+    "documentUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Secure Firebase Storage URL"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Pending", "Verified", "Rejected"],
+      "default": "Pending"
+    },
+    "adminNote": {
+      "type": "string"
+    },
+    "submittedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reviewedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "userId", "userRole", "docType", "documentUrl", "status", "submittedAt"]
+}

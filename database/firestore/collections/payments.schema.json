@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Payment",
+  "description": "Financial ledger record of ₹99 advance (9900 paise), final settlements, refunds, and 10% platform commission",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique transaction ID (e.g. PAY-901)"
+    },
+    "bookingId": {
+      "type": "string",
+      "description": "Foreign key to bookings.id"
+    },
+    "customerId": {
+      "type": "string",
+      "description": "Foreign key to users.id (payer)"
+    },
+    "workerId": {
+      "type": "string",
+      "description": "Foreign key to workers.id (payee)"
+    },
+    "paymentType": {
+      "type": "string",
+      "enum": ["booking_advance", "final_payment", "refund", "worker_withdrawal"],
+      "description": "Payment category"
+    },
+    "amountPaise": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total payment amount in paise (1 INR = 100 paise)"
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total payment amount in INR"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": ["UPI", "Wallet", "Card", "NetBanking", "Cash"],
+      "default": "UPI"
+    },
+    "transactionRef": {
+      "type": "string",
+      "description": "Payment gateway reference ID or UPI UTR number"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["initiated", "completed", "failed", "refunded", "in_escrow"],
+      "default": "completed"
+    },
+    "fareBreakdownPaise": {
+      "type": "object",
+      "properties": {
+        "grossLabourPaise": { "type": "integer", "minimum": 0 },
+        "advanceAdjustedPaise": { "type": "integer", "default": 9900 },
+        "materialCostPaise": { "type": "integer", "default": 0 },
+        "platformCommissionPaise": { "type": "integer", "description": "10% of labour in paise" },
+        "workerPayoutPaise": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "invoiceNumber": {
+      "type": "string",
+      "description": "Digital tax invoice number (e.g. INV-BK-902-2026)"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "amountPaise", "paymentMethod", "status", "paymentType", "createdAt"]
+}

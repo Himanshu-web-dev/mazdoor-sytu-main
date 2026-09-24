@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Business",
+  "description": "Enterprise and corporate contractor profile, GST validation, and workforce hiring statistics",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique business ID (matching users.id e.g. BIZ-101)"
+    },
+    "companyName": {
+      "type": "string",
+      "description": "Registered company / commercial contractor legal name"
+    },
+    "gstNo": {
+      "type": "string",
+      "pattern": "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$",
+      "description": "15-digit GSTIN identification number"
+    },
+    "contactPerson": {
+      "type": "string",
+      "description": "Name of authorized manager / supervisor"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Official company contact phone number"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Billing and corporate communication email"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry domain (e.g. Infrastructure, Civil Construction, Commercial Facilities)"
+    },
+    "city": {
+      "type": "string",
+      "description": "Headquarters or site operation city"
+    },
+    "verification": {
+      "type": "string",
+      "enum": ["Verified", "Pending", "Suspended"],
+      "default": "Pending",
+      "description": "Corporate GST and business credentials status"
+    },
+    "activeJobs": {
+      "type": "number",
+      "default": 0,
+      "description": "Number of currently active workforce requirements"
+    },
+    "totalHired": {
+      "type": "number",
+      "default": 0,
+      "description": "Lifetime total workers contracted via Mazdoor Sytu"
+    }
+  },
+  "required": ["id", "companyName", "phone", "verification"]
+}

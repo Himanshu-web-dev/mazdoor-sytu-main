@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Review",
+  "description": "Post-completion customer star rating, feedback, and workmanship endorsement. Strictly restricted to completed bookings only.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique review ID (e.g. REV-801)"
+    },
+    "bookingId": {
+      "type": "string",
+      "description": "Foreign key to bookings.id (must have status == 'completed')"
+    },
+    "authorId": {
+      "type": "string",
+      "description": "Foreign key to users.id of reviewer (customer)"
+    },
+    "authorName": {
+      "type": "string"
+    },
+    "workerId": {
+      "type": "string",
+      "description": "Foreign key to workers.id"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Star score (1 to 5)"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Customer feedback text"
+    },
+    "flagged": {
+      "type": "boolean",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Approved", "Hidden", "Pending"],
+      "default": "Approved"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "bookingId", "authorId", "workerId", "rating", "createdAt"]
+}

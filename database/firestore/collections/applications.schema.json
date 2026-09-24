@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Application",
+  "description": "Worker application record linking a tradesperson to a business requirement. Unique composite: jobId + workerId",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique application ID (e.g. APP-3912 or `${jobId}_${workerId}`)"
+    },
+    "jobId": {
+      "type": "string",
+      "description": "Foreign key to jobs.id"
+    },
+    "workerId": {
+      "type": "string",
+      "description": "Foreign key to workers.id"
+    },
+    "workerName": {
+      "type": "string"
+    },
+    "workerPhone": {
+      "type": "string"
+    },
+    "expectedDailyWagePaise": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Expected daily wage in paise"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["applied", "under_review", "shortlisted", "accepted", "rejected", "withdrawn"],
+      "default": "applied"
+    },
+    "appliedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": ["id", "jobId", "workerId", "status", "appliedAt"]
+}

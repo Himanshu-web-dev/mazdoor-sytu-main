@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Job",
+  "description": "Bulk workforce requirement or specialized project posted by an enterprise business",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique job identifier (e.g. JOB-1042)"
+    },
+    "businessId": {
+      "type": "string",
+      "description": "Foreign key to businesses.id"
+    },
+    "businessName": {
+      "type": "string",
+      "description": "Name of posting company"
+    },
+    "title": {
+      "type": "string",
+      "description": "Requirement title (e.g. Need 10 Mason Helpers for NH-58 Project)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed project description and scope of work"
+    },
+    "trade": {
+      "type": "string",
+      "description": "Target trade category"
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Required skills or tool expertise"
+    },
+    "workersNeeded": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Quantity of workers required"
+    },
+    "dailyWagePaise": {
+      "type": "integer",
+      "minimum": 10000,
+      "description": "Offered daily payout rate per worker in paise (1 INR = 100 paise)"
+    },
+    "dailyWage": {
+      "type": "number",
+      "minimum": 100,
+      "description": "Offered daily payout rate per worker in INR"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Project duration (e.g. 15 Days, 1 Month, Ongoing)"
+    },
+    "location": {
+      "type": "string",
+      "description": "Site address or project location"
+    },
+    "startDate": {
+      "type": "string",
+      "description": "Expected joining date"
+    },
+    "deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Application deadline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["open", "in_progress", "completed", "cancelled"],
+      "default": "open"
+    },
+    "applicantsCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "businessId", "title", "trade", "workersNeeded", "dailyWagePaise", "location", "status"]
+}

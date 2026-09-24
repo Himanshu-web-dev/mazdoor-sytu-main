@@ -1,0 +1,79 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Estimate",
+  "description": "Worker on-site diagnostics, confirmed labour fee, and approved materials quotation. Work cannot start until customer approves.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique estimate identifier (e.g. EST-2041)"
+    },
+    "bookingId": {
+      "type": "string",
+      "description": "Foreign key to bookings.id"
+    },
+    "workerId": {
+      "type": "string",
+      "description": "Foreign key to workers.id"
+    },
+    "labourRatePaise": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Agreed labour charge before advance deduction (in paise)"
+    },
+    "isOutOfPriceRange": {
+      "type": "boolean",
+      "default": false,
+      "description": "True if quoted labour is outside admin standard range, requiring explicit customer confirmation"
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "quantity": { "type": "string", "default": "1" },
+          "costPaise": { "type": "number", "minimum": 0 },
+          "receiptUrl": { "type": "string", "format": "uri" }
+        },
+        "required": ["name", "costPaise"]
+      },
+      "description": "List of required hardware materials and actual store costs (0% platform markup)"
+    },
+    "materialCostPaise": {
+      "type": "number",
+      "default": 0,
+      "description": "Sum of all material costs in paise"
+    },
+    "fareBreakdown": {
+      "type": "object",
+      "properties": {
+        "grossLabourPaise": { "type": "number" },
+        "advanceAdjustedPaise": { "type": "number", "default": 9900 },
+        "labourAdjustedPaise": { "type": "number" },
+        "materialCostPaise": { "type": "number" },
+        "customerBalancePayablePaise": { "type": "number" },
+        "platformCommissionPaise": { "type": "number", "description": "10% of gross labour in paise" },
+        "workerTotalPayoutPaise": { "type": "number" }
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "Diagnostic findings and repair recommendations"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending_customer_approval", "approved", "rejected"],
+      "default": "pending_customer_approval"
+    },
+    "approvedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "bookingId", "workerId", "labourRatePaise", "status", "createdAt"]
+}

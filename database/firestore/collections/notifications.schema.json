@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Notification",
+  "description": "User notification alert for booking updates, estimates, payments, and system notices",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique notification ID (e.g. NTF-9812)"
+    },
+    "userId": {
+      "type": "string",
+      "description": "Foreign key to users.id"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short headline alert"
+    },
+    "body": {
+      "type": "string",
+      "description": "Detailed notification message"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["booking_update", "estimate_pending", "payment_received", "job_match", "system_alert"],
+      "default": "booking_update"
+    },
+    "read": {
+      "type": "boolean",
+      "default": false
+    },
+    "data": {
+      "type": "object",
+      "description": "Optional payload for deep-linking (e.g. bookingId, jobId)"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "userId", "title", "body", "type", "createdAt"]
+}

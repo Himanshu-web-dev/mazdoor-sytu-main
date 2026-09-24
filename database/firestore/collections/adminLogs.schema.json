@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AdminLog",
+  "description": "Immutable security audit log recording administrative actions, KYC decisions, user suspensions, and manual ledger adjustments",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique log entry ID (e.g. LOG-10294)"
+    },
+    "adminId": {
+      "type": "string",
+      "description": "Foreign key to users.id of the acting administrator"
+    },
+    "adminEmail": {
+      "type": "string"
+    },
+    "actionType": {
+      "type": "string",
+      "enum": [
+        "KYC_APPROVED",
+        "KYC_REJECTED",
+        "USER_SUSPENDED",
+        "USER_ACTIVATED",
+        "DISPUTE_RESOLVED",
+        "MANUAL_REFUND",
+        "RATE_CARD_UPDATED",
+        "SYSTEM_SETTING_CHANGED"
+      ],
+      "description": "Standardized action category"
+    },
+    "targetCollection": {
+      "type": "string",
+      "description": "Affected collection (e.g. users, workers, complaints, documents)"
+    },
+    "targetId": {
+      "type": "string",
+      "description": "Affected entity ID"
+    },
+    "details": {
+      "type": "object",
+      "description": "Metadata, previous state, and justification notes"
+    },
+    "ipAddress": {
+      "type": "string",
+      "description": "Request IP address"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "adminId", "actionType", "targetCollection", "targetId", "timestamp"]
+}

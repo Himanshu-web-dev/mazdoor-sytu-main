@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Worker",
+  "description": "Worker professional profile, trade skills, live availability, GPS location, and ratings. Note: Worker has NO visitFee. The ₹99 is purely a Booking Advance adjusted in the final bill.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Worker user ID (matching users.id e.g. WRK-201)"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full name of the tradesperson"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Direct contact phone number"
+    },
+    "trade": {
+      "type": "string",
+      "description": "Primary trade skill (e.g. Electrician, Plumber, Carpenter, Painter, Mason)"
+    },
+    "secondarySkills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional trade capabilities"
+    },
+    "servicesOffered": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "serviceId": { "type": "string" },
+          "serviceName": { "type": "string" },
+          "minRatePaise": { "type": "number", "minimum": 0 },
+          "maxRatePaise": { "type": "number", "minimum": 0 },
+          "defaultRatePaise": { "type": "number", "minimum": 0 }
+        },
+        "required": ["serviceId", "defaultRatePaise"]
+      },
+      "description": "Service-wise pricing rates and acceptable range"
+    },
+    "experienceYears": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Years of hands-on field experience"
+    },
+    "hourlyRatePaise": {
+      "type": "number",
+      "minimum": 0,
+      "default": 25000,
+      "description": "Standard hourly labour rate in paise (e.g. 25000 paise = ₹250)"
+    },
+    "availability": {
+      "type": "string",
+      "enum": ["available", "busy", "offline"],
+      "default": "available",
+      "description": "Real-time dispatch status"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1.0,
+      "maximum": 5.0,
+      "default": 5.0,
+      "description": "Aggregate customer star rating"
+    },
+    "jobsCompleted": {
+      "type": "number",
+      "minimum": 0,
+      "default": 0,
+      "description": "Total successfully completed jobs"
+    },
+    "kycStatus": {
+      "type": "string",
+      "enum": ["Verified", "Pending", "Rejected"],
+      "default": "Pending",
+      "description": "Aadhaar & biometric verification badge status"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "address": { "type": "string" },
+        "city": { "type": "string" },
+        "pincode": { "type": "string" },
+        "lat": { "type": "number" },
+        "lon": { "type": "number" }
+      },
+      "description": "Base service area and real-time GPS coordinates"
+    },
+    "badge": {
+      "type": "string",
+      "enum": ["Rising Star", "Verified Pro", "Elite Master"],
+      "default": "Verified Pro"
+    }
+  },
+  "required": ["id", "name", "phone", "trade", "availability", "kycStatus"]
+}

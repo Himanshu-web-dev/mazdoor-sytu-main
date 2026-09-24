@@ -1,0 +1,18 @@
+{
+  "id": "ADM-001",
+  "name": "Super Admin",
+  "phone": "+919876500000",
+  "email": "admin@mazdoorsytu.in",
+  "role": "admin",
+  "status": "active",
+  "city": "Meerut, UP",
+  "permissions": [
+    "MANAGE_USERS",
+    "MANAGE_WORKERS",
+    "VERIFY_KYC",
+    "MANAGE_DISPUTES",
+    "VIEW_FINANCIALS",
+    "OVERRIDE_REFUNDS"
+  ],
+  "createdAt": "2026-01-01T00:00:00.000Z"
+}
